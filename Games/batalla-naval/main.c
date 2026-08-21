@@ -10,6 +10,10 @@ int main(void) {
 
 
     int** mapa = crear_mapa(10, 10);
+
+    imprimir_mapa(10, 10, mapa);
+
+    printf("\n");
     
 
 

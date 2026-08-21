@@ -12,7 +12,7 @@
  * @param elemento El puntero el cual sera iniciado en cero.
  *
 */
-void inicializar_en_cero(int *elemento);
+void inicializar_en_cero(int *elemento, int i, int j, int filas, int columnas)
 
 
 
@@ -26,7 +26,7 @@ void inicializar_en_cero(int *elemento);
  *  @param elemento El puntero el cual sera impreso.
  *
 */
-void imprimir_elemento(int *elemento);
+void imprimir_elemento(int *elemento, int i, int j, int filas, int columnas);
 
 
 
@@ -42,10 +42,12 @@ void imprimir_elemento(int *elemento);
  * @param columnas El numero total de columnas.
  * @param matriz Puntero doble (int**) a la matriz dinamica en memoria. 
  * @param accion Puntero a la funcion que se ejecutara sobre cada elemento.
- *               Debe aceptar un puntero (int*) como unico parametro.
+ *               Debe aceptar un puntero (int*) y cuatro enteros(fila y columna actual,
+ *               y su cantidad de filas y columnas) parametros.
  *
 */
-void recorrer_matriz(int filas, int columnas, int** matriz, void (*accion)(int*));
+void recorrer_matriz(int filas, int columnas, int** matriz,
+        void (*accion)(int*, int, int, int, int));
 
 
 
@@ -70,6 +72,27 @@ int** crear_mapa(int filas, int columnas);
 
 
 
+
+/**
+ * @brief Toma una matriz bidimensional dinamica e imprime sus elementos.
+ *
+ * Esta funcion toma puntero doble a entero (int**), itera sobre cada fila y columna
+ * imprimiendo en pantalla sus elementos.
+ *
+ * @param filas El numero total de filas.
+ * @param columnas El numero total de columnas.
+ * @param mapa El puntero doble a entero (int**) que representa un mapa.
+ * 
+*/
+void imprimir_mapa(int filas, int columnas, int** mapa);
+
+
+
+
+/**
+ *
+*/
+void liberar_mapa(int filas, int** mapa);
 
 
 

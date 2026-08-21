@@ -5,29 +5,33 @@
 #include "funciones.h"
 
 
-void inicializar_en_cero(int *elemento) {
-    *elemento=0;
+void inicializar_en_cero(int *elemento, int i, int j, int filas, int columnas) {
+    *elemento = 0;
 }
 
 
-void imprimir_elemento(int *elemento) {
+void imprimir_elemento(int *elemento, int i, int j, int filas, int columnas) {
     printf("%d ", *elemento);
+    
+    // Salto de línea al terminar la columna
+    if (j == columnas - 1) {
+        printf("\n");
+    }
 }
 
 
-void recorrer_matriz(int filas, int columnas, int** matriz, void (*accion)(int*)) {
+void recorrer_matriz(int filas, int columnas, int** matriz,
+        void (*accion)(int*, int, int, int, int)) {
 
     for (int i=0; i < filas; i++) {
         for (int j=0; j < columnas; j++) {
-            accion(&matriz[i][j]);
+            accion(&matriz[i][j], i, j, filas, columnas);
         }
     }
-
 }
 
 
 int** crear_mapa(int filas, int columnas) {
-    
     // Asignamos memoria para la cantidad de filas.
     int** mapa = (int**)malloc(filas * sizeof(int*));
 
@@ -40,5 +44,17 @@ int** crear_mapa(int filas, int columnas) {
     recorrer_matriz(filas, columnas, mapa, inicializar_en_cero);
 
     return mapa;
+}
 
-} 
+
+void imprimir_mapa(int filas, int columnas, int** mapa) {
+    recorrer_matriz(filas, columnas, mapa, imprimir_elemento);
+}
+
+
+void liberar_mapa(int filas, int** mapa) {
+    for (int i = 0; i < filas; i++) {
+        free(mapa[i]); // Libera cada fila
+    }
+    free(mapa); // Libera el arreglo de punteros principal
+}

@@ -90,7 +90,14 @@ void imprimir_mapa(int filas, int columnas, int** mapa);
 
 
 /**
+ * @brief Libera la memoria asignada para un mapa (matriz bidimensional dinamica).
  *
+ * Esta funcion recorre cada una de las filas del mapa liberando su memoria asignada,
+ * y finalmente libera el arreglo de punteros principal.
+ *
+ * @param filas El numero total de filas del mapa.
+ * @param mapa El puntero doble a entero (int**) que representa el mapa a liberar.
+ * 
 */
 void liberar_mapa(int filas, int** mapa);
 

@@ -12,7 +12,7 @@
  * @param elemento El puntero el cual sera iniciado en cero.
  *
 */
-void inicializar_en_cero(int *elemento, int i, int j, int filas, int columnas)
+void inicializar_en_cero(int *elemento, int i, int j, int filas, int columnas);
 
 
 

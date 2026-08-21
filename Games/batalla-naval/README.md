@@ -48,7 +48,7 @@ gcc -Wall -Wextra *.c -o naval
 
 ## 🎮 Reglas del Juego (Clásico)
 
-1. **Tablero**: Cada jugador cuenta con un tablero de $N \times M$ donde posiciona su flota de barcos.
+1. **Tablero**: Cada jugador cuenta con un tablero de $10 \times 10$ donde posiciona su flota de barcos.
 2. **Disparos**: Por turnos, los jugadores ingresan coordenadas $(fila, columna)$ para atacar el tablero enemigo.
 3. **Impactos y Agua**: 
    - Si se acierta a una posición ocupada por un barco, se registra un **impacto** (Tocado).

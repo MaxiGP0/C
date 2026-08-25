@@ -205,6 +205,24 @@ int colocar_todos_los_barcos(int filas, int columnas, int** mapa);
 
 
 /**
+ * @brief Realiza un disparo en las coordenadas indicadas del mapa.
+ * 
+ * @param filas Número total de filas del mapa.
+ * @param columnas Número total de columnas del mapa.
+ * @param mapa Puntero doble a entero que representa el tablero enemigo.
+ * @param fila Fila del disparo.
+ * @param columna Columna del disparo.
+ * @return int Retorna -1 si está fuera de límites, -2 si ya se disparó ahí, 0 si es agua (fallo), o el ID del barco si es impacto (tocado).
+ */
+int disparar(int filas, int columnas, int** mapa, int fila, int columna);
+
+/**
+ * @brief Realiza un turno de disparo interactivo pidiendo coordenadas al usuario.
+ */
+void ejecutar_disparo_interactivo(int filas, int columnas, int** mapa_enemigo);
+
+
+/**
  * Imprime el mapa completo con los dos jugadores.
  */
 void imprimir_juego(int filas, int columnas, int** jugador1, int** jugador2);

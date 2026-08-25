@@ -33,6 +33,13 @@ int main(void) {
     printf("Colocacion de barcos para Jugador 2:\n");
     colocar_todos_los_barcos(FILAS, COLUMNAS, Player2);
 
+    imprimir_juego(FILAS, COLUMNAS, Player1, Player2);
+
+    printf("Realizando un disparo en el tablero del Jugador 2:\n");
+    ejecutar_disparo_interactivo(FILAS, COLUMNAS, Player2);
+
+    imprimir_juego(FILAS, COLUMNAS, Player1, Player2);
+
     liberar_mapa(FILAS, Player1);
     liberar_mapa(FILAS, Player2);
     return 0;

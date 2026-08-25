@@ -184,3 +184,42 @@ int colocar_todos_los_barcos(int filas, int columnas, int** mapa) {
     }
     return 1;
 }
+
+
+int disparar(int filas, int columnas, int** mapa, int fila, int columna) {
+    if (fila < 0 || columna < 0 || fila >= filas || columna >= columnas) {
+        return -1; // Fuera de límites
+    }
+    if (mapa[fila][columna] == -1 || mapa[fila][columna] == -2) {
+        return -2; // Ya disparado en esa posición
+    }
+    if (mapa[fila][columna] == 0) {
+        mapa[fila][columna] = -1; // Agua (fallado)
+        return 0;
+    } else {
+        int id_barco = mapa[fila][columna];
+        mapa[fila][columna] = -2; // Tocado
+        return id_barco;
+    }
+}
+
+void ejecutar_disparo_interactivo(int filas, int columnas, int** mapa_enemigo) {
+    int f_disparo, c_disparo;
+    printf("Ingrese fila y columna para disparar: ");
+    if (scanf("%d %d", &f_disparo, &c_disparo) == 2) {
+        int resultado = disparar(filas, columnas, mapa_enemigo, f_disparo, c_disparo);
+        if (resultado == -1) {
+            printf("Disparo fuera de limites.\n");
+        } else if (resultado == -2) {
+            printf("Ya habias disparado en esta posicion.\n");
+        } else if (resultado == 0) {
+            printf("Agua (Fallado).\n");
+        } else {
+            printf("Tocado! Barco ID %d alcanzado.\n", resultado);
+        }
+    } else {
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF);
+        printf("Entrada invalida.\n");
+    }
+}

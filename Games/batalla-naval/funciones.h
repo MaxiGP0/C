@@ -199,6 +199,12 @@ int colocar_destructor(int filas, int columnas, int** mapa, int fila, int column
 
 
 /**
+ * @brief Coloca todos los barcos de la flota pidiendo las coordenadas al usuario.
+ */
+int colocar_todos_los_barcos(int filas, int columnas, int** mapa);
+
+
+/**
  * Imprime el mapa completo con los dos jugadores.
  */
 void imprimir_juego(int filas, int columnas, int** jugador1, int** jugador2);

@@ -155,3 +155,32 @@ void imprimir_juego(int filas, int columnas, int** jugador1, int** jugador2){
     printf("-------------------\n");
     imprimir_mapa(filas, columnas, jugador2);
 }
+
+
+int colocar_todos_los_barcos(int filas, int columnas, int** mapa) {
+    int tamanios[] = {TAMANIO_PORTAAVIONES, TAMANIO_ACORAZADO, TAMANIO_CRUCERO, TAMANIO_SUBMARINO, TAMANIO_DESTRUCTOR};
+    int ids[] = {1, 2, 3, 4, 5};
+    int n_barcos = 5;
+
+    for (int i = 0; i < n_barcos; i++) {
+        int colocado = 0;
+        while (!colocado) {
+            int fila, columna;
+            char orientacion;
+            printf("Colocando barco %d (tamanio %d):\n", ids[i], tamanios[i]);
+            printf("Ingrese fila, columna y orientacion (H/V): ");
+            if (scanf("%d %d %c", &fila, &columna, &orientacion) != 3) {
+                int c;
+                while ((c = getchar()) != '\n' && c != EOF);
+                continue;
+            }
+            if (colocar_barco(filas, columnas, mapa, fila, columna, tamanios[i], orientacion, ids[i])) {
+                colocado = 1;
+                printf("Barco colocado exitosamente.\n");
+            } else {
+                printf("Posicion invalida o colision. Intente nuevamente.\n");
+            }
+        }
+    }
+    return 1;
+}

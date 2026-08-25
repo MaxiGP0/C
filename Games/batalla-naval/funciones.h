@@ -217,9 +217,30 @@ int colocar_todos_los_barcos(int filas, int columnas, int** mapa);
 int disparar(int filas, int columnas, int** mapa, int fila, int columna);
 
 /**
+ * @brief Imprime el mapa ocultando los barcos vivos (muestra solo disparos y agua).
+ */
+void imprimir_mapa_oculto(int filas, int columnas, int** mapa);
+
+/**
+ * @brief Limpia la pantalla imprimiendo saltos de línea para mantener privacidad entre turnos.
+ */
+void limpiar_pantalla(void);
+
+/**
  * @brief Realiza un turno de disparo interactivo pidiendo coordenadas al usuario.
  */
 void ejecutar_disparo_interactivo(int filas, int columnas, int** mapa_enemigo);
+
+/**
+ * @brief Verifica si un jugador aún tiene barcos vivos en su mapa.
+ * @return int 1 si tiene barcos vivos, 0 si todos sus barcos están hundidos.
+ */
+int tiene_barcos_vivos(int filas, int columnas, int** mapa);
+
+/**
+ * @brief Inicia el ciclo de juego por turnos hasta que un jugador gane.
+ */
+void iniciar_partida(int filas, int columnas, int** jugador1, int** jugador2);
 
 
 /**

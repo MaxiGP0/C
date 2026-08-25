@@ -223,3 +223,70 @@ void ejecutar_disparo_interactivo(int filas, int columnas, int** mapa_enemigo) {
         printf("Entrada invalida.\n");
     }
 }
+
+void imprimir_elemento_oculto(int *elemento, int i, int j, int filas, int columnas) {
+    if (*elemento > 0) {
+        printf("0 ");
+    } else {
+        printf("%d ", *elemento);
+    }
+    if (j == columnas - 1) {
+        printf("\n");
+    }
+}
+
+void imprimir_mapa_oculto(int filas, int columnas, int** mapa) {
+    recorrer_matriz(filas, columnas, mapa, imprimir_elemento_oculto);
+}
+
+void limpiar_pantalla(void) {
+    for (int i = 0; i < 40; i++) {
+        printf("\n");
+    }
+}
+
+int tiene_barcos_vivos(int filas, int columnas, int** mapa) {
+    for (int i = 0; i < filas; i++) {
+        for (int j = 0; j < columnas; j++) {
+            if (mapa[i][j] > 0) {
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
+void iniciar_partida(int filas, int columnas, int** jugador1, int** jugador2) {
+    int turno = 1;
+    while (tiene_barcos_vivos(filas, columnas, jugador1) && tiene_barcos_vivos(filas, columnas, jugador2)) {
+        printf("\nPresione Enter para pasar al turno del Jugador %d...", turno);
+        while (getchar() != '\n');
+        getchar();
+
+        limpiar_pantalla();
+
+        printf("\n============================\n");
+        printf("   TURNO DE JUGADOR %d\n", turno);
+        printf("============================\n");
+
+        if (turno == 1) {
+            printf("Tablero del Jugador 2 (Tus disparos):\n");
+            imprimir_mapa_oculto(filas, columnas, jugador2);
+            ejecutar_disparo_interactivo(filas, columnas, jugador2);
+            if (!tiene_barcos_vivos(filas, columnas, jugador2)) {
+                printf("\n¡Jugador 1 ha hundido todos los barcos del Jugador 2 y ha ganado la partida!\n");
+                break;
+            }
+            turno = 2;
+        } else {
+            printf("Tablero del Jugador 1 (Tus disparos):\n");
+            imprimir_mapa_oculto(filas, columnas, jugador1);
+            ejecutar_disparo_interactivo(filas, columnas, jugador1);
+            if (!tiene_barcos_vivos(filas, columnas, jugador1)) {
+                printf("\n¡Jugador 2 ha hundido todos los barcos del Jugador 1 y ha ganado la partida!\n");
+                break;
+            }
+            turno = 1;
+        }
+    }
+}

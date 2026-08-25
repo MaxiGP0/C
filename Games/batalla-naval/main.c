@@ -23,22 +23,22 @@ int main(void) {
     int** Player1 = crear_mapa(FILAS, COLUMNAS);
     int** Player2 = crear_mapa(FILAS, COLUMNAS);
 
-    imprimir_juego(FILAS, COLUMNAS, Player1, Player2);
-
-    printf("Colocacion de barcos para Jugador 1:\n");
+    printf("Colocacion de barcos para el Jugador 1:\n");
     colocar_todos_los_barcos(FILAS, COLUMNAS, Player1);
 
-    imprimir_juego(FILAS, COLUMNAS, Player1, Player2);
+    printf("\nPresione Enter para que el Jugador 2 coloque sus barcos...");
+    while (getchar() != '\n');
+    getchar();
+    limpiar_pantalla();
 
-    printf("Colocacion de barcos para Jugador 2:\n");
+    printf("Colocacion de barcos para el Jugador 2:\n");
     colocar_todos_los_barcos(FILAS, COLUMNAS, Player2);
 
-    imprimir_juego(FILAS, COLUMNAS, Player1, Player2);
+    printf("\nPresione Enter para limpiar y comenzar la batalla...");
+    getchar();
+    limpiar_pantalla();
 
-    printf("Realizando un disparo en el tablero del Jugador 2:\n");
-    ejecutar_disparo_interactivo(FILAS, COLUMNAS, Player2);
-
-    imprimir_juego(FILAS, COLUMNAS, Player1, Player2);
+    iniciar_partida(FILAS, COLUMNAS, Player1, Player2);
 
     liberar_mapa(FILAS, Player1);
     liberar_mapa(FILAS, Player2);

@@ -198,6 +198,11 @@ int colocar_submarino(int filas, int columnas, int** mapa, int fila, int columna
 int colocar_destructor(int filas, int columnas, int** mapa, int fila, int columna, char orientacion, int id_barco);
 
 
+/**
+ * Imprime el mapa completo con los dos jugadores.
+ */
+void imprimir_juego(int filas, int columnas, int** jugador1, int** jugador2);
+
 
 
 

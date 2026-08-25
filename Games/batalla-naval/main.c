@@ -17,12 +17,7 @@ int main(void) {
     int** Player1 = crear_mapa(FILAS, COLUMNAS);
     int** Player2 = crear_mapa(FILAS, COLUMNAS);
 
-    imprimir_mapa(FILAS, COLUMNAS, Player1);
-    printf("-------------------\n");
-    imprimir_mapa(FILAS, COLUMNAS, Player2);
-    
-
-
+    imprimir_juego(FILAS, COLUMNAS, Player1, Player2);
 
 
 

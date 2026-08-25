@@ -148,3 +148,10 @@ int colocar_submarino(int filas, int columnas, int** mapa, int fila, int columna
 int colocar_destructor(int filas, int columnas, int** mapa, int fila, int columna, char orientacion, int id_barco) {
     return colocar_barco(filas, columnas, mapa, fila, columna, TAMANIO_DESTRUCTOR, orientacion, id_barco);
 }
+
+
+void imprimir_juego(int filas, int columnas, int** jugador1, int** jugador2){
+    imprimir_mapa(filas, columnas, jugador1);
+    printf("-------------------\n");
+    imprimir_mapa(filas, columnas, jugador2);
+}

@@ -109,11 +109,62 @@ int main() {
         Rectangle msgBox = { 20, 520, 630, 40 };
         Rectangle sendBtn = { 660, 520, 120, 40 };
 
-        // Handle text box focus
+        // Handle text box focus and typing
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
             ip_edit_mode = CheckCollisionPointRec(mousePoint, ipBox);
             name_edit_mode = CheckCollisionPointRec(mousePoint, nameBox);
             msg_edit_mode = CheckCollisionPointRec(mousePoint, msgBox);
+        }
+
+        // Handle IP Text Input
+        if (ip_edit_mode) {
+            int key = GetCharPressed();
+            while (key > 0) {
+                if ((key >= 32) && (key <= 125) && (strlen(ip_text) < sizeof(ip_text) - 1)) {
+                    int len = strlen(ip_text);
+                    ip_text[len] = (char)key;
+                    ip_text[len + 1] = '\0';
+                }
+                key = GetCharPressed();
+            }
+            if (IsKeyPressed(KEY_BACKSPACE)) {
+                int len = strlen(ip_text);
+                if (len > 0) ip_text[len - 1] = '\0';
+            }
+        }
+
+        // Handle Name Text Input
+        if (name_edit_mode) {
+            int key = GetCharPressed();
+            while (key > 0) {
+                if ((key >= 32) && (key <= 125) && (strlen(name_text) < sizeof(name_text) - 1)) {
+                    int len = strlen(name_text);
+                    name_text[len] = (char)key;
+                    name_text[len + 1] = '\0';
+                }
+                key = GetCharPressed();
+            }
+            if (IsKeyPressed(KEY_BACKSPACE)) {
+                int len = strlen(name_text);
+                if (len > 0) name_text[len - 1] = '\0';
+            }
+        }
+
+        // Handle Message Text Input
+        if (msg_edit_mode) {
+            int key = GetCharPressed();
+            while (key > 0) {
+                if ((key >= 32) && (key <= 125) && (strlen(msg_text) < sizeof(msg_text) - 1)) {
+                    int len = strlen(msg_text);
+                    msg_text[len] = (char)key;
+                    msg_text[len + 1] = '\0';
+                }
+                key = GetCharPressed();
+            }
+            if (IsKeyPressed(KEY_BACKSPACE)) {
+                int len = strlen(msg_text);
+                if (len > 0) msg_text[len - 1] = '\0';
+            }
         }
 
         // Connect Button Click
@@ -157,7 +208,7 @@ int main() {
         }
 
         // Send Message Button or Enter key
-        if (connected && (CheckCollisionPointRec(mousePoint, sendBtn) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT) || (msg_edit_mode && IsKeyPressed(KEY_ENTER)))) {
+        if (connected && ((CheckCollisionPointRec(mousePoint, sendBtn) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) || (msg_edit_mode && IsKeyPressed(KEY_ENTER)))) {
             if (strlen(msg_text) > 0) {
                 char full_msg[BUFFER_SIZE];
                 snprintf(full_msg, sizeof(full_msg), "[%s]: %s\n", name_text, msg_text);
